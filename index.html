@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Terminal</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+        #terminal {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .alert {
+            color: #ff0000;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ff0000;
+            animation: blink 0.4s infinite alternate;
+        }
+        .highlight {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background-color: #00ff00;
+            animation: blink-cursor 1s infinite;
+            vertical-align: bottom;
+            margin-left: 5px;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        @keyframes blink-cursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        @media (max-width: 600px) {
+            #terminal { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="terminal"></div>
+    <script>
+        const terminal = document.getElementById('terminal');
+        const script = [
+            { text: "Microsoft Windows [版本 10.0.19045.3803]\n", delay: 500 },
+            { text: "(c) 2025 Microsoft Corporation。保留所有权利。\n\n", delay: 500 },
+            { text: "C:\\Users\\Peiqi> ", delay: 1000 },
+            { text: "run_judge.exe --target=初二五班\n\n", delay: 1000 },
+            { text: ">> 正在启动初二五班终极鉴定系统...\n", delay: 1500 },
+            { text: ">> 正在扫描名单...\n", delay: 1000 },
+            { text: ">> 发现目标：看的是给\n", delay: 1000 },
+            { text: ">> 鉴定结果加载中...\n", delay: 800 },
+            { text: "[", delay: 100 },
+            { text: "████████████████████", delay: 1500 },
+            { text: "] 100%\n\n", delay: 800 },
+            { text: "!!!!! 警告：看的是GAY !!!!!\n", class: "alert", delay: 200 },
+            { text: "!!!!! 警告：看的是GAY !!!!!\n", class: "alert", delay: 200 },
+            { text: "!!!!! 警告：看的是GAY !!!!!\n\n", class: "alert", delay: 800 },
+            { text: "========================================\n", delay: 300 },
+            { text: "     结论：", delay: 500 },
+            { text: "纯纯的GAY，没救了！\n", class: "highlight", delay: 1000 },
+            { text: "     鉴定完毕 —— 佩奇姐\n", delay: 500 },
+            { text: "========================================\n\n", delay: 500 },
+            { text: "C:\\Users\\Peiqi> ", delay: 1000 }
+        ];
+
+        let index = 0;
+
+        function typeWriter() {
+            if (index < script.length) {
+                const item = script[index];
+                const span = document.createElement('span');
+                if (item.class) {
+                    span.className = item.class;
+                }
+                const textToType = item.text;
+                let charIndex = 0;
+                const cursor = document.createElement('span');
+                cursor.className = 'cursor';
+                terminal.appendChild(cursor);
+
+                function typeChar() {
+                    if (charIndex < textToType.length) {
+                        if (item.class === "alert") {
+                            span.textContent = textToType;
+                            terminal.insertBefore(span, cursor);
+                            setTimeout(nextItem, item.delay);
+                        } else {
+                            span.textContent += textToType.charAt(charIndex);
+                            terminal.insertBefore(span, cursor);
+                            charIndex++;
+                            setTimeout(typeChar, textToType.charAt(charIndex-1) === '\n' ? 200 : 30);
+                        }
+                    } else {
+                        cursor.remove();
+                        setTimeout(nextItem, item.delay);
+                    }
+                }
+                typeChar();
+            }
+        }
+
+        function nextItem() {
+            index++;
+            typeWriter();
+        }
+
+        window.onload = () => {
+            setTimeout(typeWriter, 500);
+        };
+    </script>
+</body>
+</html>
