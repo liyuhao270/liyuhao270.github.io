@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>王佩琪 · 个人主页</title>
+    <title>初二五班 · 终极名单</title>
     <style>
         * {
             margin: 0;
@@ -12,270 +12,226 @@
         }
 
         body {
-            background: linear-gradient(145deg, #f9f5f0 0%, #f0eae3 100%);
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #0a0a0c;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #fff;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 24px;
-            color: #2c2825;
+            padding: 20px;
+            overflow-x: hidden;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 56px;
-            padding: 64px 72px;
-            box-shadow: 
-                0 30px 60px -20px rgba(0, 0, 0, 0.15),
-                0 0 0 1px rgba(255, 255, 255, 0.8) inset,
-                0 0 0 1px rgba(200, 180, 160, 0.2);
-            text-align: center;
-            max-width: 760px;
+        .glow {
+            position: absolute;
+            width: 50vw;
+            height: 50vw;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+        .glow-cyan { background: #00f3ff; top: -10%; left: -10%; }
+        .glow-pink { background: #ff00ea; bottom: -10%; right: -10%; }
+
+        .container {
+            background: rgba(18, 18, 24, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            padding: 48px 40px;
+            max-width: 720px;
             width: 100%;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeUp 0.9s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 243, 255, 0.05);
+            position: relative;
+            animation: fadeUp 0.8s ease-out forwards;
             opacity: 0;
-            transform: translateY(16px);
+            transform: translateY(20px);
         }
 
-        .card:hover {
-            box-shadow: 
-                0 40px 80px -24px rgba(0, 0, 0, 0.2),
-                0 0 0 1px rgba(255, 255, 255, 0.9) inset,
-                0 0 0 1px rgba(180, 145, 99, 0.3);
-        }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes fadeUp {
-            0% {
-                opacity: 0;
-                transform: translateY(24px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        .header { text-align: center; margin-bottom: 40px; position: relative; }
 
-        .dot-accent {
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            background: linear-gradient(90deg, #00f3ff, #ff00ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: #c7a57b;
-            border-radius: 50%;
-            margin: 0 6px 4px 6px;
-            opacity: 0.7;
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
         }
 
-        .name {
-            font-size: clamp(4rem, 16vw, 7rem);
-            font-weight: 650;
-            letter-spacing: 0.06em;
-            line-height: 1.1;
-            color: #1e1b18;
-            margin-bottom: 16px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.08em;
-            position: relative;
-        }
-
-        .char {
-            display: inline-block;
-            transition: transform 0.25s ease, color 0.25s ease;
-            position: relative;
-        }
-
-        .char:hover {
-            transform: translateY(-8px);
-            color: #9b7b5a;
-        }
-
-        .name-underline {
-            width: 120px;
+        .header::after {
+            content: '';
+            display: block;
+            width: 60px;
             height: 3px;
-            background: linear-gradient(90deg, transparent, #c7a57b, #c7a57b, transparent);
-            margin: 16px auto 28px auto;
-            border-radius: 4px;
-            opacity: 0.6;
+            background: linear-gradient(90deg, #00f3ff, #ff00ea);
+            margin: 16px auto 0;
+            border-radius: 2px;
+            box-shadow: 0 0 10px #ff00ea;
         }
 
-        .subhead {
-            font-size: 1.2rem;
-            font-weight: 400;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: #6b5f55;
-            margin-bottom: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
+        .roster { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 40px; }
 
-        .subhead span {
-            background: #e7dfd6;
-            padding: 6px 20px;
-            border-radius: 40px;
-            font-size: 0.85rem;
+        .name-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 1.1rem;
             font-weight: 500;
-            color: #3d352e;
-            letter-spacing: 1px;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(4px);
+            color: #e0e0e0;
+            transition: all 0.3s ease;
+            cursor: default;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .intro {
-            font-size: 1.12rem;
-            color: #4f4841;
-            max-width: 480px;
-            margin: 0 auto 48px auto;
-            line-height: 1.7;
-            font-weight: 380;
-            border-top: 1px solid rgba(200, 180, 160, 0.3);
-            padding-top: 32px;
+        .name-tag:hover {
+            background: rgba(0, 243, 255, 0.15);
+            border-color: #00f3ff;
+            color: #fff;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
         }
 
-        .dot-row {
+        /* 特殊名字（带括号的） */
+        .name-tag.special { border-color: #ff00ea; color: #ff00ea; }
+        .name-tag.special:hover {
+            background: rgba(255, 0, 234, 0.15);
+            border-color: #ff00ea;
+            box-shadow: 0 0 20px rgba(255, 0, 234, 0.4);
+            color: #fff;
+        }
+
+        /* 战神专属特效 */
+        .name-tag.god-of-war {
+            background: linear-gradient(135deg, rgba(255, 69, 0, 0.2), rgba(255, 215, 0, 0.2));
+            border: 1px solid #ff4500;
+            color: #ffd700;
+            font-weight: 800;
+            text-shadow: 0 0 10px #ff4500;
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.5), inset 0 0 10px rgba(255, 69, 0, 0.2);
+            animation: war-pulse 1.5s infinite alternate, war-shake 0.2s infinite;
+        }
+
+        .name-tag.god-of-war:hover {
+            background: linear-gradient(135deg, #ff4500, #ffd700);
+            color: #000;
+            border-color: #fff;
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 0 30px #ff4500, 0 0 50px #ffd700;
+            text-shadow: none;
+            animation: none;
+        }
+
+        @keyframes war-pulse {
+            0% { box-shadow: 0 0 10px rgba(255, 69, 0, 0.4); }
+            100% { box-shadow: 0 0 25px rgba(255, 69, 0, 0.8), 0 0 10px #ffd700; }
+        }
+
+        @keyframes war-shake {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(1px, 1px) rotate(0.5deg); }
+            50% { transform: translate(-1px, -1px) rotate(-0.5deg); }
+            75% { transform: translate(1px, -1px) rotate(0.5deg); }
+            100% { transform: translate(-1px, 1px) rotate(-0.5deg); }
+        }
+
+        .mystery-text {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #888;
+            letter-spacing: 0.2em;
+            margin: 40px 0;
+            padding: 20px;
+            background: repeating-linear-gradient(-45deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02) 10px, transparent 10px, transparent 20px);
+            border-radius: 12px;
+            font-family: monospace;
+            word-break: break-all;
+        }
+
+        .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent); margin: 20px 0 30px; }
+
+        .footer {
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.1em;
             display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 32px;
-        }
-
-        .dot-row span {
-            width: 6px;
-            height: 6px;
-            background: #d6c8b9;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .contact-link {
-            display: inline-flex;
+            justify-content: flex-end;
             align-items: center;
             gap: 10px;
-            background: #1f1d1a;
-            color: #f9f5f0;
-            text-decoration: none;
-            padding: 14px 36px;
-            border-radius: 60px;
-            font-weight: 480;
-            font-size: 1.02rem;
-            letter-spacing: 0.3px;
-            transition: background 0.25s, transform 0.15s, box-shadow 0.2s;
-            border: 1px solid #1f1d1a;
-            box-shadow: 0 8px 18px -6px rgba(0, 0, 0, 0.2);
         }
 
-        .contact-link:hover {
-            background: #3a342e;
-            border-color: #3a342e;
-            transform: scale(1.02);
-            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.25);
-        }
+        .footer .dash { color: #00f3ff; font-size: 2rem; line-height: 1; }
 
-        .contact-link .arrow {
-            font-size: 1.2rem;
-            transition: transform 0.2s;
-            display: inline-block;
-        }
-
-        .contact-link:hover .arrow {
-            transform: translateX(4px);
-        }
-
-        .footer-note {
-            margin-top: 44px;
-            font-size: 0.78rem;
-            color: #9b9289;
-            letter-spacing: 0.5px;
-            font-weight: 380;
+        .footer .name {
+            background: linear-gradient(90deg, #fff, #00f3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
         }
 
         @media (max-width: 600px) {
-            .card {
-                padding: 44px 24px;
-                border-radius: 40px;
-            }
-            .name {
-                font-size: 4.2rem;
-                gap: 0.04em;
-            }
-            .subhead {
-                font-size: 1rem;
-                letter-spacing: 0.12em;
-                gap: 8px;
-            }
-            .intro {
-                font-size: 1rem;
-                padding-top: 24px;
-                margin-bottom: 32px;
-            }
-            .contact-link {
-                padding: 12px 28px;
-                font-size: 0.95rem;
-            }
-            .footer-note {
-                margin-top: 32px;
-                font-size: 0.7rem;
-            }
-            .name-underline {
-                margin-bottom: 20px;
-            }
-        }
-
-        @media (max-width: 380px) {
-            .name {
-                font-size: 3.2rem;
-            }
-            .card {
-                padding: 32px 18px;
-            }
+            .container { padding: 32px 20px; }
+            .header h1 { font-size: 1.6rem; }
+            .name-tag { padding: 8px 16px; font-size: 0.95rem; }
+            .mystery-text { font-size: 0.9rem; letter-spacing: 0.1em; }
+            .footer { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="dot-row">
-            <span></span>
-            <span></span>
-            <span></span>
+    <div class="glow glow-cyan"></div>
+    <div class="glow glow-pink"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>初二五班 · 终极名单</h1>
         </div>
 
-        <h1 class="name" aria-label="王佩琪">
-            <span class="char">王</span>
-            <span class="char">佩</span>
-            <span class="char">琪</span>
-        </h1>
-
-        <div class="name-underline"></div>
-
-        <div class="subhead">
-            <span>设计师</span>
-            <span class="dot-accent" style="width:4px;height:4px;margin:0;"></span>
-            <span>创作者</span>
+        <div class="roster">
+            <span class="name-tag">丁丁</span>
+            <span class="name-tag">老丈人</span>
+            <span class="name-tag">达昌</span>
+            <span class="name-tag">一鸣</span>
+            <!-- 战神专属特效在这儿！ -->
+            <span class="name-tag god-of-war">⚔️ 战神</span>
+            <span class="name-tag">枫枫</span>
+            <span class="name-tag">8根头</span>
+            <span class="name-tag">猪腚</span>
+            <span class="name-tag">明宣</span>
+            <span class="name-tag">子墨</span>
+            <span class="name-tag">星辰</span>
+            <span class="name-tag special">（？？and旭）</span>
+            <span class="name-tag">顺顺</span>
+            <span class="name-tag">金源</span>
+            <span class="name-tag">老二</span>
+            <span class="name-tag">萝北头</span>
+            <span class="name-tag">家园</span>
         </div>
 
-        <p class="intro">
-            用设计表达态度，用代码构建想法。<br>
-            这里是我的个人空间，欢迎停留。
-        </p>
+        <div class="mystery-text">
+            ………看…的…是…给………………………
+        </div>
 
-        <a href="mailto:wangpeiqi@example.com" class="contact-link">
-            ✉️ 联系我
-            <span class="arrow">→</span>
-        </a>
+        <div class="divider"></div>
 
-        <div class="footer-note">
-            © 2025 王佩琪 · 保持好奇
+        <div class="footer">
+            <span class="dash">—</span>
+            <span class="name">你雨浩哥</span>
         </div>
     </div>
 </body>
-  </html>
+</html>
